@@ -16,20 +16,14 @@ const CategoriesScreen = props => {
       <CategoryGridTile
         title={itemData.item.title}
         color={itemData.item.color}
-        onSelect={() => {
+        onSelect={
+          () => {
           props.navigation.navigate({
-            routeName: 'CategoryMeals',
+            routeName: 'Category',
             params: {
-              
-
-              
-            }
-          });
-        }}
-
-      />
-    );
-  };
+              categoryId:itemData.item.id
+            }});}}/>);
+};
 
   return (
     <FlatList

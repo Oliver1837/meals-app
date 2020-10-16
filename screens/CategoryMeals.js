@@ -3,18 +3,15 @@ import {View, Text, Button, FlatList, StyleSheet} from 'react-native'
 import {CATEGORIES} from '../data/dummy-data'
 import Colors from '../constants/Color'
 const CategoryMealsScreen = (props)=>{
-    const catId = props.navigation.getParam('categoryId');
-
-    const selecetedCategory = CATEGORIES.find(cat => cat.id = catId)
+  
 
 
     return (
         <View style={styles.screen}>
             <Text>Categories Screen  </Text>
-            <Button title="go"
+            <Button title="Ba"
             onPress={()=>{
                     props.navigation.navigate({routeName: "MealDetail"})
-
             }}
             ></Button>
         </View>
@@ -29,8 +26,9 @@ const CategoryMealsScreen = (props)=>{
 CategoryMealsScreen.navigationOptions = (navigationData) =>{
     const catId = navigationData.navigation.getParam('categoryId');
 
-    const selecetedCategory = CATEGORIES.find(cat => cat.id = catId);
-return{
+    const selecetedCategory = CATEGORIES.find(cat => cat.id ==  catId);
+    console.log(selecetedCategory.title )
+    return{
     headerTitle :selecetedCategory.title ,
     headerStyle : {
         backgroundColor : Colors.primaryColor
