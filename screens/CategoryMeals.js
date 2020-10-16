@@ -27,7 +27,6 @@ CategoryMealsScreen.navigationOptions = (navigationData) =>{
     const catId = navigationData.navigation.getParam('categoryId');
 
     const selecetedCategory = CATEGORIES.find(cat => cat.id ==  catId);
-    console.log(selecetedCategory.title )
     return{
     headerTitle :selecetedCategory.title ,
     headerStyle : {
