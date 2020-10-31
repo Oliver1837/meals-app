@@ -1,43 +1,31 @@
-import React ,{useState}from 'react'
-import {View, Text, Button, FlatList, StyleSheet} from 'react-native'
-import {CATEGORIES,MEALS} from '../data/dummy-data'
-import MealList from '../components/MealList'
+import React from 'react';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 
-const FavoritiesScreen = (props)=>{
-    const displayMeals = MEALS.filter(meal => meal.id=='m1'|| meal.id=='m2');
+import HeaderButton from '../components/HeaderButton';
+import MealList from '../components/MealList';
 
-    return (
-        <MealList
-    listData ={
-        displayMeals
-    }
-    navigation = {
-        props.navigation
-    }
+const FavoritesScreen = props => {
+  const favMeals = useSelector(state => state.meals.favoriteMeals);
+
+  return <MealList listData={favMeals} navigation={props.navigation} />;
+};
+
+FavoritesScreen.navigationOptions = navData => {
+  return {
+    headerTitle: 'Your Favorites',
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
         />
+      </HeaderButtons>
+    )
+  };
+};
 
-    );
-
-
-
-}
-FavoritiesScreen.navigationOptions  ={
-
-    headerTitle :"Your favorities",
- 
-}
-const styles= StyleSheet.create({
-    screen:{
-        flex:1,
-        justifyContent:"center"
-        ,
-        alignItems:"center"
-
-
-
-    }
-
-
-
-})
-export default FavoritiesScreen;
+export default FavoritesScreen;
